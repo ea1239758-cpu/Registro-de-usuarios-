@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registro de usuarios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Registro de usuarios</h1>
+    <p>Crea la persona, su acceso al sistema y los roles que tendrá.</p>
+  </header>
+
+  <main class="layout">
+    <form id="userForm" class="panel form" novalidate>
+      <fieldset>
+        <legend>Datos personales</legend>
+
+        <div class="grid-2">
+          <label class="field">
+            <span>Nombres</span>
+            <input name="firstName" maxlength="50" autocomplete="given-name" required>
+            <small class="error" data-error="firstName"></small>
+          </label>
+          <label class="field">
+            <span>Apellidos</span>
+            <input name="lastName" maxlength="50" autocomplete="family-name" required>
+            <small class="error" data-error="lastName"></small>
+          </label>
+        </div>
+
+        <div class="grid-doc">
+          <label class="field">
+            <span>Tipo de documento</span>
+            <select name="documentTypeId" required><option value="">Cargando…</option></select>
+            <small class="error" data-error="documentTypeId"></small>
+          </label>
+          <label class="field">
+            <span>Número de documento</span>
+            <input name="documentNumber" maxlength="30" inputmode="numeric" required>
+            <small class="error" data-error="documentNumber"></small>
+          </label>
+        </div>
+
+        <div class="grid-2">
+          <label class="field">
+            <span>Correo electrónico</span>
+            <input name="email" type="email" maxlength="100" autocomplete="email" required>
+            <small class="error" data-error="email"></small>
+          </label>
+          <label class="field">
+            <span>Teléfono <em>(opcional)</em></span>
+            <input name="phoneNumber" type="tel" maxlength="20" autocomplete="tel">
+            <small class="error" data-error="phoneNumber"></small>
+          </label>
+        </div>
+
+        <div class="grid-2">
+          <label class="field">
+            <span>Sexo</span>
+            <select name="sexId" required><option value="">Cargando…</option></select>
+            <small class="error" data-error="sexId"></small>
+          </label>
+          <label class="field">
+            <span>Género <em>(opcional)</em></span>
+            <select name="genderId"><option value="">Cargando…</option></select>
+            <small class="error" data-error="genderId"></small>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Acceso al sistema</legend>
+        <div class="grid-2">
+          <label class="field">
+            <span>Nombre de usuario</span>
+            <input name="username" maxlength="50" autocomplete="username" required>
+            <small class="error" data-error="username"></small>
+          </label>
+          <label class="field">
+            <span>Contraseña</span>
+            <div class="password">
+              <input name="password" type="password" minlength="8" autocomplete="new-password" required>
+              <button type="button" class="ghost" id="togglePassword" aria-pressed="false">Mostrar</button>
+            </div>
+            <small class="hint">Mínimo 8 caracteres.</small>
+            <small class="error" data-error="password"></small>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Roles</legend>
+        <div id="rolesList" class="roles" role="group" aria-label="Roles del usuario"></div>
+        <small class="error" data-error="roleIds"></small>
+      </fieldset>
+
+      <div class="actions">
+        <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+        <button type="reset" class="ghost">Limpiar</button>
+        <button type="submit" class="primary" id="submitBtn">Registrar usuario</button>
+      </div>
+    </form>
+
+    <section class="panel list" aria-labelledby="listTitle">
+      <div class="list-head">
+        <h2 id="listTitle">Usuarios registrados</h2>
+        <span id="userCount" class="count"></span>
+      </div>
+      <ul id="userList" class="user-list"></ul>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
